@@ -55,7 +55,8 @@ static HSV RALLY_RABBIT_CYLON_math(HSV hsv, uint8_t i, uint8_t time)
     // Row 3 (First row of letters to Page Down
     uint8_t ledFirst[3] = {   0,  16,  32 }; // LED Number of first LED on the row (row1, row2, row3)
     uint8_t ledCount[3] = {  16,  16,  16 }; // LEDs on the row (row1, row2, row3)
-    //uint8_t ledLast[3]  = {  62,  63,  64 }; // Since last LED of Rows 1-4 are on Row 4 assignment, this is an override 
+    //uint8_t ledRLast[3] = {  16,  16,  16 }; // LEDs last on the physical row
+    uint8_t ledLast[3]  = {  62,  63,  64 }; // Since last LED of Rows 1-4 are on Row 4 assignment, this is an override 
     uint8_t hsv_h[3]    = {  20,   0,  20 }; // HSV.h value override for each LED on each row (row1, row2, row3)
 
     // Row 1/3: Base Color as Orange
@@ -69,9 +70,30 @@ static HSV RALLY_RABBIT_CYLON_math(HSV hsv, uint8_t i, uint8_t time)
     // Traverse the possible LED Matches by desired positions in rows
     for (uint8_t row=0; row < 3; row++)
     {
-        if ((i >= ledFirst[row]) && (i < ledFirst[row] + ledCount[row]))
+        // CSTM80 does not have sequential LEDs, last position on rows 1-3 is actually on row 4
+        // Key 16 is actually LED 62
+        // Key 32 is actually LED 63
+        // Key 48 is actually LED 64
+        // So 17th interation is LED 0 on next row
+    //    if (i == (ledFirst[row] + ledCount[row]))
+    //    {
+   //         continue;
+   //     }
+
+        if (((i >= ledFirst[row]) && (i < ledFirst[row] + ledCount[row])) || (i == ledLast[row]))
         {
+            // Assume this first unless we need to override
+            // Logical/Sequential LED to Key mapping (basically LED 0-15 matches keys 0-15 for the row)
             uint8_t j = i - ledFirst[row];
+ 
+            if (i == ledLast[row])
+            {
+                // Logical/Sequential LED to Key Mapping is incorrect, so force and override
+                // Key 16 is actually LED 62
+                // Key 32 is actually LED 63
+                // Key 48 is actually LED 64
+                j = ledFirst[row] + ledCount[row] + 1;
+            }
 
             if (row == 1)
             {
