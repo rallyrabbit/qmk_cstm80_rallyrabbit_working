@@ -69,7 +69,7 @@ static HSV RALLY_RABBIT_CYLON_math(HSV hsv, uint8_t i, uint8_t time)
     // Traverse the possible LED Matches by desired positions in rows
     for (uint8_t row=0; row < 3; row++)
     {
-        if ((i >= ledFirst[row]) && (i < ledFirst[row] + ledCount[row]))jj
+        if ((i >= ledFirst[row]) && (i < ledFirst[row] + ledCount[row]))
         {
             uint8_t j = i - ledFirst[row];
 
