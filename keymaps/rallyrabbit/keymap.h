@@ -50,7 +50,7 @@ enum ctrl_keycodes {
     KC_U_AC,               // U with acute accent
     KC_NT_C,               // N with tilda
     KC_AE_C,               // AE character
-    KC_SLEEP,              // Sleep Key
+    KC_LOCK,               // Lock Key
     KC_WIN,                // Set to Windows Keyboard
     KC_MAC,                // Set to Macos Keyboard
     RM_TO_TOG              // RGB Timeout toggle

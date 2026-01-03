@@ -10,9 +10,7 @@
 #include "keymap.h"
 #include "quantum.h"
 #include "os_detection.h"
-#include "caps_word.h"
 
-//KC_F1
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_WINDOWS] = LAYOUT_tkl_f13_ansi(
          KC_ESC,    KC_F1,     KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,      KC_F11,     KC_F12,  KC_F13,            KC_PSCR, KC_SCRL, KC_PAUS,
@@ -31,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,  KC_LALT,   KC_LGUI,                     KC_SPC,                                     KC_RGUI,     SC_FUNC,    KC_LALT, KC_RCTL,            KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_FUNCTION] = LAYOUT_tkl_f13_ansi(
-        _______,  MD_BOOT,   _______,   EE_CLR, _______, _______, _______, _______, _______, KC_MPLY, KC_MSTP,     KC_MPRV,    KC_MNXT, _______,            KC_MUTE,  _______, KC_SLEEP,
+        _______,  MD_BOOT,   _______,   EE_CLR, _______, _______, _______, _______, _______, KC_MPLY, KC_MSTP,     KC_MPRV,    KC_MNXT, _______,            KC_MUTE,  _______, KC_LOCK,
          KC_NUM,  KC_KP_1,   KC_KP_2,  KC_KP_3, KC_KP_4, KC_KP_5, KC_KP_6, KC_KP_7, KC_KP_8, KC_KP_9, KC_KP_0, KC_KP_MINUS, KC_KP_PLUS, _______,            _______,  KC_BRIU, KC_VOLU,
         _______,  _______,    KC_WIN,  KC_E_AC, _______, _______, _______, KC_U_AC, KC_I_AC, KC_O_AC, _______,     _______,    _______, _______,            _______,  KC_BRID, KC_VOLD,
         _______,  KC_A_AC,   KC_AE_C,  RM_SPDU, RM_VALU, RM_SATU, _______, _______, _______, _______, _______,     _______,              KC_ENT,
@@ -120,8 +118,8 @@ const uint8_t PROGMEM ledmap[][IS31FL3733_LED_COUNT][3] = {
         _______,
         _______,
         _______,
-         YELLOW, // End Key
-        _______, // Delete Key
+        _______, // End Key
+         YELLOW, // Delete Key
 
         _______, // Row 4
           GREEN, // A
@@ -199,6 +197,9 @@ bool g_isEffectDR = false;
 
 // RGB control flags for the driver
 bool disable_layer_color;
+
+// Used to managed layerstate changes
+static layer_state_t prev_layer_state;
 
 //
 // Standard QMK Hook
@@ -508,6 +509,35 @@ void send_windows_altcode_sequence(uint16_t altCode, uint8_t shiftMask, keyrecor
 }
 #endif
 
+//
+// Standard hook function for QMK
+// Called on every layer change
+//
+layer_state_t layer_state_set_user(layer_state_t state)
+{
+    uint8_t old_layer = get_highest_layer(prev_layer_state);
+    uint8_t new_layer = get_highest_layer(state);
+
+#ifdef RGB_MATRIX_ENABLE
+    if (old_layer != new_layer)
+    {
+        // Set all RGB to off on true layer state change
+        // Clear RGB from layer on every layer change
+        for (int i = 0; i < IS31FL3733_LED_COUNT; i++)
+        {
+            // Clear RGB before every layer change
+            rgb_matrix_set_color(i, 0, 0, 0);
+        }
+    }
+#endif
+
+    prev_layer_state = state;
+    return state;
+}
+
+//
+// Helper function used to set layer colors for custom key layers (function layer)
+//
 void set_layer_color(int layer)
 {
     if ((layer == _WINDOWS) || (layer == _MACOS))
@@ -517,7 +547,6 @@ void set_layer_color(int layer)
 
 #ifdef RGB_MATRIX_ENABLE
     // Go through the Drop CTRL Maxtrix Count for every LED
-    //RGB_MATRIX_USE_LIMITS(led_min, led_max);
     for (int i = 0; i < IS31FL3733_LED_COUNT; i++)
     {
         HSV hsv =
@@ -533,7 +562,7 @@ void set_layer_color(int layer)
             float f = (float) rgb_matrix_config.hsv.v / UINT8_MAX;
             rgb_matrix_set_color(i, f * rgb.r, f * rgb.g, f * rgb.b);
         }
-        else if (layer != 1)
+        else
         {
             // Only deactivate non-defined key LEDs at layers other than FN. Because at FN we have RGB adjustments and need to see them live.
             // If the values are all false then it's a transparent key and deactivate LED at this layer
@@ -606,20 +635,8 @@ bool process_detected_host_os_user(os_variant_t detected_os) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
     static uint32_t sKeyTimer;
-    static bool sIsMacAsleep = false;
 	static uint8_t sShiftMask;
     sShiftMask = MODS_SHIFT;
-
-    // If in Mac Mode, special handling for sleep mode and wakeup
-    if (bIsWindowsKeyboard == false)
-    {
-        if (sIsMacAsleep && record->event.pressed)
-        {
-            sIsMacAsleep = false;
-            rgb_matrix_set_flags(LED_FLAG_ALL);
-            rgb_matrix_enable_noeeprom();
-        }    
-    }
 
     // Specal Handling for RGB Sleep Mode
     //
@@ -1019,33 +1036,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             set_single_persistent_default_layer(_WINDOWS);
             return false;
 
-        case KC_SLEEP:
-            // If not set to Mac Mode, then ignore the sleep button
+        case KC_LOCK:
             if (bIsWindowsKeyboard == false)
             {
                 if (record->event.pressed)
                 {
-                    // Command + ALT + EJECT was sporatic, used this instead
-                    // Command + ALT + EJECT was sporatic - stopped working in v24
-                    // tap_code16(LCTL(LGUI(KC_Q))); stopped working in v26
-                    // Control + Option + Command + Power 
-                    //tap_code16(LCTL(LALT(LGUI(KC_PWR))));
+                    // Ctrl-Cmd-Q
                     tap_code16(LCTL(LGUI(KC_Q)));
-
-                    sIsMacAsleep = true;
-                    rgb_matrix_set_flags(LED_FLAG_NONE);
-                    rgb_matrix_disable_noeeprom();
                 }
-                else if (!record->event.pressed)
-                {
-                    tap_code(KC_ESCAPE);
-                }    
             }
             else
             {
-                // WINDOWS
-                // NEEDS work
-                tap_code(KC_SYSTEM_SLEEP);
+                // WINDOWS - Lock
+                if (record->event.pressed)
+                {
+                    // WIN + L
+                    tap_code16(LGUI(KC_L));
+                }
             }
             return false;
 
