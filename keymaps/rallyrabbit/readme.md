@@ -96,9 +96,9 @@ Special RGB Effects added to my driver that are not normal parts of QMK.
 
 Follow the QMK directions isntalling QMK MSYS.
 * Download the QMK firmware (this repository)
-* config.h in the current directory is used to add to the massdrop/ctrl/config.h or remove things added in that file as it is included after that file.
+* config.h in the current directory is used to add to the drop/cstm80/keymap/rallyrabbit/config.h or remove things added in that file as it is included after that file.
 * rules.mk is used in addition to the massdrop/ctrl/rules.mk and is used to add to or turn off items in the standard rules.mk file
-* Build with "qmk compile -kb massdrop/ctrl -km rallyrabbit"
+* Build with "qmk compile -kb drop/cstm80 -km rallyrabbit"
 
 ## Layers
 
