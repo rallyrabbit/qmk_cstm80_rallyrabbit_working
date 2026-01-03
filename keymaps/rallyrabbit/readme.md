@@ -29,7 +29,7 @@ Features that are complete:
 * Added Audio controls and sound mute to FN hotkeys
 * Added Sound volume to FN-Page Up and FN-Page Down
 * Added Boot Loader hotkey as FN-F1
-* Added updated FN-ESC Mac sleep key (OS 26 broke the old method)
+* Added function-pause in both WINDOWS and MACOS to be quick lock
 * Added Spanish accent letters to FN-A, FN-E, FN-I, FN-O, FN-U (Á, É, Í, Ó, Ú)
 * Added Spanish N with Tilda to FN-N
 * Added British/Nordic AE to FN-S (Æ)
@@ -40,49 +40,62 @@ Features that are complete:
 * Re-do of digital raindrops to be more like the Matrix.
 * Feature flagged the RGB Timeout
 * Added persistent "white" RGB color when Caps Lock or Scroll Lock is pressed
-* Added Starfield RGB effect
 
 ## Things Incomplete
 
 Items that I still want to add to the driver:
-* Improve MacOS and Windows Sleep keys
+* Improve Cylon RGB Effect
   
 ## RGB Matrix Effects Included
 
 Standard QMK RGB Matrix Effects Included
 
-* RGB_MATRIX_ALPHAS_MODS - Static dual hue, speed is hue for secondary hue
-* RGB_MATRIX_GRADIENT_UP_DOWN - Static gradient top to bottom, speed controls how much gradient changes
-* RGB_MATRIX_GRADIENT_LEFT_RIGHT - Static gradient left to right, speed controls how much gradient changes
-* RGB_MATRIX_BREATHING - Single hue brightness cycling animation
-* RGB_MATRIX_BAND_SAT - Single hue band fading saturation scrolling left to right
-* RGB_MATRIX_BAND_SPIRAL_SAT - Single hue spinning spiral fades saturation
-* RGB_MATRIX_BAND_SPIRAL_VAL - Single hue spinning spiral fades brightness
-* RGB_MATRIX_BAND_VAL - Single hue band fading brightness scrolling left to right
-* RGB_MATRIX_CYCLE_ALL - Full keyboard solid hue cycling through full gradient
-* RGB_MATRIX_CYCLE_LEFT_RIGHT - Full gradient scrolling left to right
-* RGB_MATRIX_CYCLE_UP_DOWN - Full gradient scrolling top to bottom
-* RGB_MATRIX_RAINBOW_MOVING_CHEVRON - Full gradient Chevron shapped scrolling left to right
-* RGB_MATRIX_CYCLE_OUT_IN - Full gradient scrolling out to in
-* RGB_MATRIX_CYCLE_OUT_IN_DUAL - Full dual gradients scrolling out to in
-* RGB_MATRIX_CYCLE_SPIRAL - Full gradient spinning spiral around center of keyboard
-* RGB_MATRIX_RAINDROPS - Randomly changes a single key's hue
-* RGB_MATRIX_JELLYBEAN_RAINDROPS - Randomly changes a single key's hue and saturation
-* RGB_MATRIX_HUE_BREATHING - Hue shifts up a slight ammount at the same time, then shifts back
-* RGB_MATRIX_PIXEL_RAIN - Randomly light keys with random hues
-* RGB_MATRIX_PIXEL_FLOW - Pulsing RGB flow along LED wiring with random hues
-* RGB_MATRIX_PIXEL_FRACTAL - Single hue fractal filled keys pulsing horizontally out to edges
-* RGB_MATRIX_DIGITAL_RAIN - That famous computer simulation
-* RGB_MATRIX_SOLID_REACTIVE_SIMPLE - Pulses keys hit to hue & value then fades value out
-* RGB_MATRIX_SPLASH - Full gradient & value pulse away from a single key hit then fades value out
-* RGB_MATRIX_MULTISPLASH - Full gradient & value pulse away from multiple key hits then fades value out
-* RGB_MATRIX_SOLID_SPLASH - Hue & value pulse away from a single key hit then fades value out
+* ALPHAS_MODS - Static dual hue, speed is hue for secondary hue
+* BREATHING
+* BAND PINWHEEL (Sat and Val)
+* BAND_SPIRAL_SAT - Single hue spinning spiral fades saturation
+* BAND_SPIRAL_VAL - Single hue spinning spiral fades brightness
+* BAND_SAT
+* BAND_VAL - Single hue band fading brightness scrolling left to right
+* CYCLE_ALL - Full keyboard solid hue cycling through full gradient
+* CYCLE_LEFT_RIGHT - Full gradient scrolling left to right
+* CYCLE_OUT_IN
+* CYCLE_OUT_IN_DUAL
+* CYCLE_PINWHEEL
+* CYCLE_SPIRAL
+* CYLCLE_UP_DOWN
+* DUAL_BEACON
+* GRADIENT_LEFT_RIGHT - Static gradient left to right, speed controls how much gradient changes
+* GRADIENT_UP_DOWN - Static gradient top to bottom, speed controls how much gradient changes
+* HUE_BREATHING
+* HUE_PENDULUM
+* HUE_WAVE
+* JELLYBEAN_RAINDROPS - Randomly changes a single key's hue and saturation
+* PIXEL_FLOW - Pulsing RGB flow along LED wiring with random hues
+* PIXEL_FRACTAL - Single hue fractal filled keys pulsing horizontally out to edges
+* PIXEL_RAIN - Randomly light keys with random hues
+* RAINBOW_BEACON
+* RAINBOW_MOVING_CHEVRON
+* RAINBOW_PINWHEELS
+* RAINDROPS - Randomly changes a single key's hue
+* SOLID_REACTIVE
+* SOLID_REACTIVE_CROSS
+* SOLID_REACTIVE_NEXUS
+* SOLID_REACTIVE_SIMPLE
+* SOLID_REACTIVE_WIDE
+* SOLID_REACTIVE_MULTIWIDE
+* SOLID_REACTIVE_MULTICROSS
+* SOLID_REACTIVE_MULTINEXUS
+* SOLID_SPLASH - Hue & value pulse away from a single key hit then fades value out
+* SOLID_MULTISPLASH - Full gradient & value pulse away from multiple key hits then fades value out
+* MULTISPLASH - Full gradient & value pulse away from a single key hit then fades value out
+* SPLASH
+* HEATMAP
 
 ### Special to Rally Rabbit Driver
 
 Special RGB Effects added to my driver that are not normal parts of QMK.
 
-* FLOWER_BLOOMING - Flower Blooming of HorrorTroll
 * RAINBOW_DIAGONAL - Small tweak of Cool Diaganol of HorrorTroll
 * BAND_SAT_DEEP_RIVER - Deep River Lacrosse Blue with Neon Green Field Scroll
 * BAND_SAT_DEEP_RIVER_REVERSE - Deep River Lacrosse Neon Green with Blue Field Scroll
@@ -90,7 +103,6 @@ Special RGB Effects added to my driver that are not normal parts of QMK.
 * BAND_SAT_RALLYRABBIT_HELLA - Hella Rally Rabbit Blue with Yellow Field Scroll
 * BAND_SAT_RALLYRABBIT_HELLA_REVERSE - Hella Rally Rabbit Yellow with Blue Field Scroll
 * RALLY_RABBIT_MATRIX_RAIDROPS - Essentially the Matrix with more speed, control and color
-* STARLIGHT_SMOOTH - Lifted from another keymap (really liked it)
 
 ## To Use
 
@@ -112,6 +124,6 @@ Follow the QMK directions isntalling QMK MSYS.
 
 ### "Function" Layer
 
-![Image](https://i.imgur.com/KCZKmJT.png)
+![Image](https://i.imgur.com/KFqwnoy.png)
 
 
