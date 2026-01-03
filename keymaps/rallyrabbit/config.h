@@ -54,7 +54,9 @@
 // RGB Matrix Animation modes. Explicitly enabled in addition to the ones in CSTM80/keyboard.json
 // For full list of effects, see:
 // https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects
+#define ENABLE_RGB_MATRIX_FLOWER_BLOOMING
+#define ENABLE_RGB_MATRIX_RIVERFLOW
 #define ENABLE_RGB_MATRIX_STARLIGHT
 #define ENABLE_RGB_MATRIX_STARLIGHT_DUAL_HUE
+#define ENABLE_RGB_MATRIX_STARLIGHT_DUAL_SAT
 #define ENABLE_RGB_MATRIX_STARLIGHT_SMOOTH
-#define ENABLE_RGB_MATRIX_FLOWER_BLOOMING
