@@ -60,9 +60,3 @@ enum ctrl_keycodes {
 #define SC_WIN DF(_WINDOWS)
 #define SC_MAC DF(_MACOS)
 #define SC_FUNC MO(_FUNCTION)
-
-// Milliseconds in a Second
-#define MS_TO_SECONDS 1000
-
-// RGB Timeout (1800 seconds = 30 minutes)
-#define DEFAULT_RGB_TIMEOUT_SECONDS 1800
