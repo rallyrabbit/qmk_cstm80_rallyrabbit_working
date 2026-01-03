@@ -1,10 +1,10 @@
 # DROP CSTM80 Keyboard RallyRabbit Driver
 
-This is the keymap and other items tied to the RallyRabbit customizations for the Massdrop CSTM80 TKL Keyboard
+This is the keymap and other items tied to the RallyRabbit customizations for the Massdrop CSTM80 TKL Keyboard (Similar to the RallyRabbit Driver for Drop CTRL)
 
 ## Main Features
 
-I really like the Drop CTRL keyboard but recently picked up a CSTM80 and wanted my same driver and layout used there.  Either way, I really dislike the Drop CTRL and CSTM80 stock driversand feel like Drop really strayed from the benefits of QMK.  My goal was to take the Drop CTRL driver and make it much more standard to QMK.  My features include.
+I really like the Drop CTRL keyboard but recently picked up a CSTM80 and wanted my same driver and layout used there.  Either way, I really dislike the Drop CTRL and CSTM80 stock drivers and feel like Drop really strayed from the benefits of QMK.  My goal was to take the Drop CTRL driver, port it to Drop CSTM80 and make it much more standard to QMK.  My features include.
 
 Features that are complete:
 * Standard Windows and Mac OS X QWERTY keyboard layouts
@@ -38,15 +38,15 @@ Features that are complete:
 * Num Lock on the FN-` key
 * Caps Word with Shift Double Tap, or Left/Right Shift at same time. Times out in 5 Seconds.
 * Re-do of digital raindrops to be more like the Matrix.
+* Feature flagged the RGB Timeout
+* Added persistent "white" RGB color when Caps Lock or Scroll Lock is pressed
+* Added Starfield RGB effect
 
 ## Things Incomplete
 
 Items that I still want to add to the driver:
-* Special LED sequence when caps lock is pressed on caps lock key
-* Special LED sequence when scroll lock is pressed on scroll lock key
-* Figuring out why LED on Z key is not the correct color
-* Sleep key strokes for windows
-
+* Improve MacOS and Windows Sleep keys
+  
 ## RGB Matrix Effects Included
 
 Standard QMK RGB Matrix Effects Included
@@ -90,6 +90,7 @@ Special RGB Effects added to my driver that are not normal parts of QMK.
 * BAND_SAT_RALLYRABBIT_HELLA - Hella Rally Rabbit Blue with Yellow Field Scroll
 * BAND_SAT_RALLYRABBIT_HELLA_REVERSE - Hella Rally Rabbit Yellow with Blue Field Scroll
 * RALLY_RABBIT_MATRIX_RAIDROPS - Essentially the Matrix with more speed, control and color
+* STARLIGHT_SMOOTH - Lifted from another keymap (really liked it)
 
 ## To Use
 
