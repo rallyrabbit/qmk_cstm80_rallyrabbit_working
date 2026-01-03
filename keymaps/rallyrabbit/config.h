@@ -36,6 +36,10 @@
 
 // RGB Timeout feature
 #define RALLYRABBIT_FEATURE_RGB_TIMEOUT
+#define MS_TO_SECONDS 1000
+
+// RGB Timeout (1800 seconds = 30 minutes)
+#define DEFAULT_RGB_TIMEOUT_SECONDS 1800
 
 // Caps Word Enable
 // Enable with Double Tap Shift or Press Both Shifts
@@ -46,3 +50,11 @@
 #define CAPS_WORD_INVERT_ON_SHIFT
 // NOTE: I prefer this method, but as of QMK Dec 2025, this does not work no matter what I tried, will revisit later.
 //#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+
+// RGB Matrix Animation modes. Explicitly enabled in addition to the ones in CSTM80/keyboard.json
+// For full list of effects, see:
+// https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects
+#define ENABLE_RGB_MATRIX_STARLIGHT
+#define ENABLE_RGB_MATRIX_STARLIGHT_DUAL_HUE
+#define ENABLE_RGB_MATRIX_STARLIGHT_SMOOTH
+#define ENABLE_RGB_MATRIX_FLOWER_BLOOMING
