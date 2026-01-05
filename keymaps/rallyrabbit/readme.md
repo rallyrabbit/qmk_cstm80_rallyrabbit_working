@@ -40,6 +40,7 @@ Features that are complete:
 * Re-do of digital raindrops to be more like the Matrix.
 * Feature flagged the RGB Timeout
 * Added persistent "white" RGB color when Caps Lock or Scroll Lock is pressed
+* At the request of my daughter, she wanted a way to change RGB mode, Hue, Sat, and Val without layer changing and clearing the RGB in use.  So added this with Windows Key (Win Keybaord Mode) or Command key (Mac Keyboard Mode).  Windows with F1/F2 is RGB Prev/Next, F3/F4 is RGB Brightness -/+, F5/F6 is RGB Hue -/+; F7/F8 is RGB Saturation -/+
 
 ## Things Incomplete
 
@@ -125,5 +126,11 @@ Follow the QMK directions isntalling QMK MSYS.
 ### "Function" Layer
 
 ![Image](https://i.imgur.com/KFqwnoy.png)
+
+### 'Quick RGB Change' Help
+
+This is used off the Windows or MacOS layer by using Windows Key (Windows) or Command Key (MacOS)
+
+![Image](https://i.imgur.com/LjL4293.png)
 
 
