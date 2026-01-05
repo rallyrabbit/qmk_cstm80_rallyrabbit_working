@@ -34,6 +34,10 @@
 #define USE_WINDOWS_ALT_CODES
 #define USE_MACOS_ALT_CODES
 
+// Debug output for Keycodes
+// CONSOLE_ENABLE needs to be yes to do this
+//#ifdef RALLYRABBIT_DEBUG_KEYCODES
+
 // RGB Timeout feature
 #define RALLYRABBIT_FEATURE_RGB_TIMEOUT
 #define MS_TO_SECONDS 1000

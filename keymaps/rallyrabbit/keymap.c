@@ -636,6 +636,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
     static uint32_t sKeyTimer;
 	static uint8_t sShiftMask;
+
     sShiftMask = MODS_SHIFT;
 
     // Specal Handling for RGB Sleep Mode
@@ -670,10 +671,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 #endif
     }
 
+#ifdef RALLYRABBIT_DEBUG_KEYCODES
+    if (record->event.pressed)
+    {
+        uprintf("keycode: %d\n", keycode);
+        uprintf("mods: %02X weak: %02X oneshot: %02X\n", get_mods(), get_weak_mods(), get_oneshot_mods());
+    }
+#endif
+
     // Main Key Code Handling for this keymap
     switch (keycode)
     {
         case MD_BOOT:
+            // Manually reset to Boot Loader
             if (record->event.pressed)
             {
                 sKeyTimer = timer_read32();
@@ -686,6 +696,94 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 }
             }
             return false;
+
+        case KC_F1:
+            if (record->event.pressed)
+            {
+                if (get_mods() & MOD_BIT(KC_LGUI))
+                {
+                    rgb_matrix_step_reverse();
+                    return false;
+                }
+            }
+            return true;
+
+        case KC_F2:
+            if (record->event.pressed)
+            {
+                if (get_mods() & MOD_BIT(KC_LGUI))
+                {
+                    rgb_matrix_step();
+                    return false;
+                }
+            }
+            return true;
+
+        case KC_F3:
+            if (record->event.pressed)
+            {
+                if (get_mods() & MOD_BIT(KC_LGUI))
+                {
+                    rgb_matrix_increase_val();
+                    return false;
+                }
+            }
+            return true;
+
+        case KC_F4:
+            if (record->event.pressed)
+            {
+                if (get_mods() & MOD_BIT(KC_LGUI))
+                {
+                    rgb_matrix_increase_val();
+                    return false;
+                }
+            }
+            return true;
+
+        case KC_F5:
+            if (record->event.pressed)
+            {
+                if (get_mods() & MOD_BIT(KC_LGUI))
+                {
+                    rgb_matrix_decrease_hue();
+                    return false;
+               }
+            }
+            return true;
+
+        case KC_F6:
+            if (record->event.pressed)
+            {
+                if (get_mods() & MOD_BIT(KC_LGUI))
+                {
+                    rgb_matrix_increase_hue();
+                    return false;
+                }
+            }
+            return true;
+
+        case KC_F7:
+            if (record->event.pressed)
+            {
+                if (get_mods() & MOD_BIT(KC_LGUI))
+                {
+                    rgb_matrix_decrease_sat();
+                    return false;
+                }
+            }
+            return true;
+
+        case KC_F8:
+            if (record->event.pressed)
+            {
+                if (get_mods() & MOD_BIT(KC_LGUI))
+                {
+                    rgb_matrix_increase_sat();
+                    return false;
+                }
+            }
+            return true;
 
         case KC_A_AC:
             // Á or á

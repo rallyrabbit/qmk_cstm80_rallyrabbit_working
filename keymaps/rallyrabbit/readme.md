@@ -45,7 +45,7 @@ Features that are complete:
 ## Things Incomplete
 
 Items that I still want to add to the driver:
-* Improve Cylon RGB Effect
+* Improve RallyRabbiy RGB Cylon Effect
   
 ## RGB Matrix Effects Included
 
@@ -132,5 +132,3 @@ Follow the QMK directions isntalling QMK MSYS.
 This is used off the Windows or MacOS layer by using Windows Key (Windows) or Command Key (MacOS)
 
 ![Image](https://i.imgur.com/LjL4293.png)
-
-
