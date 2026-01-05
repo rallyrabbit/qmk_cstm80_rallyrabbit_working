@@ -29,22 +29,6 @@
 #define MODS_RSHIFT     (MOD_BIT(KC_LSFT))
 #define MODS_LSHIFT     (MOD_BIT(KC_RSFT))
 
-// For Spanish Keycode Functions
-//#define USE_UNICODE_ALT_LETTERS
-#define USE_WINDOWS_ALT_CODES
-#define USE_MACOS_ALT_CODES
-
-// Debug output for Keycodes
-// CONSOLE_ENABLE needs to be yes to do this
-//#ifdef RALLYRABBIT_DEBUG_KEYCODES
-
-// RGB Timeout feature
-#define RALLYRABBIT_FEATURE_RGB_TIMEOUT
-#define MS_TO_SECONDS 1000
-
-// RGB Timeout (1800 seconds = 30 minutes)
-#define DEFAULT_RGB_TIMEOUT_SECONDS 1800
-
 // Caps Word Enable
 // Enable with Double Tap Shift or Press Both Shifts
 // Invert characters when shift pressed

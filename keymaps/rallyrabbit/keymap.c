@@ -261,7 +261,7 @@ void matrix_scan_user(void)
 
         if (idleCounterSeconds >= DEFAULT_RGB_TIMEOUT_SECONDS) {
             rgbTimeoutSaveMatrixFlags = rgb_matrix_get_flags();
-            rgb_matrix_set_flags(LED_FLAG_NONE);
+            rgb_matrix_set_flags_noeeprom(LED_FLAG_NONE);
             rgb_matrix_disable_noeeprom();
             rgbEnabled = false;
             idleCounterSeconds = 0;
@@ -658,7 +658,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             if (rgbEnabled == false)
             {
                 rgb_matrix_enable_noeeprom();
-                rgb_matrix_set_flags(rgbTimeoutSaveMatrixFlags);
+                rgb_matrix_set_flags_noeeprom(rgbTimeoutSaveMatrixFlags);
                 rgbEnabled = true;
             }
         }
